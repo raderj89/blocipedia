@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: blocipedia_development
+  pool: 5
+  username: raderj89
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: blocipedia_test
+  pool: 5
+  username: raderj89
+  password:
