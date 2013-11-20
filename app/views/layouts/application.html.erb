@@ -9,6 +9,10 @@
 <body>
 
   <div class="container">
+    <% flash.each do |type, msg| %>
+      <div class="alert <%= flash_class(type) %>">
+        <%= msg %>
+    <% end %>
     <%= yield %>
   </div>
 

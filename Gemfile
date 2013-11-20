@@ -5,6 +5,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'better_errors'
 gem 'devise'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'guard-rspec', '1.2.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
+  gem 'annotate', '2.5.0'
 end
 
 group :test do
