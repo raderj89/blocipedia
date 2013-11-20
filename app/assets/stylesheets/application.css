@@ -18,3 +18,14 @@
 .center-header {
   text-align: center;
 }
+
+.sign-in-nav {
+  float: right;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+}
