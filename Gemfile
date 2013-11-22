@@ -5,13 +5,12 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'better_errors'
 gem 'devise'
-gem 'simple_form'
 gem 'figaro'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'skeleton-rails'
+  gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -21,7 +20,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
