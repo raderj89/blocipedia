@@ -1,2 +1,19 @@
 <%= provide(:title, @user.username) %>
-<h1><%= @user.username %></h1>
+<div class="row">
+  <h1><%= @user.username %></h1>
+
+  <div class="col-lg-8">
+    <% if @user.wikis.any? %>
+      <h3><%= @user.wikis.count %> Wikis</h3>
+      <ol class="wikis">
+        <%= render @wikis %>
+      </ol>
+      <%= will_paginate @wikis %>
+    <% end %>
+  </div>
+</div>
+
+<% if @user == current_user %>
+  <%= link_to "Edit", edit_user_registration_path %>
+  <%= link_to "Create Wiki", new_wiki_path %>
+<% end %>

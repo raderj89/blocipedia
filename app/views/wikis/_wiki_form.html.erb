@@ -1,0 +1,11 @@
+<%= form_for @wiki, html: { class: 'form-horizontal'} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.text_field :title, placeholder: "Wiki title", class: 'form-control'  %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.text_area :body, placeholder: "Wiki goes here", class: 'form-control' %>
+  </div>
+  <%= f.submit 'Publish', class: "btn btn-lg btn-primary" %>
+<% end %>

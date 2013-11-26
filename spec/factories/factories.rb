@@ -9,7 +9,7 @@ FactoryGirl.define do
 
   factory :wiki do
     title "foobar"
-    body "foobar nova scotia"
+    body "foobar nova scotia" * 10
     user
   end
 end

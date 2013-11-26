@@ -1,0 +1,10 @@
+<li>
+  <h3><%= link_to wiki.title, wiki_path %></h3>
+  <div class="wiki-body">
+    <%= wiki.body %>
+    <br>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(wiki.created_at) %> ago.
+    </span>
+  </div>
+</li>

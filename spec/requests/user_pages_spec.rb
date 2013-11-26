@@ -50,8 +50,11 @@ describe "User pages" do
     it { should have_selector('title', text: user.username) }
 
     describe "wikis" do
+      it { should have_content(w1.title)}
       it { should have_content(w1.body)}
+      it { should have_content(w2.title)}
       it { should have_content(w2.body)}
+      it { should have_content(user.wikis.count) }
     end
   end
 

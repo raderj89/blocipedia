@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'better_errors'
 gem 'devise'
 gem 'figaro'
+gem 'will_paginate'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

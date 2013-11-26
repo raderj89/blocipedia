@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121220249) do
+ActiveRecord::Schema.define(:version => 20131124011051) do
 
   create_table "users", :force => true do |t|
     t.string   "username",                               :null => false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20131121220249) do
     t.integer  "user_id"
   end
 
+  add_index "wikis", ["created_at"], :name => "index_wikis_on_created_at"
   add_index "wikis", ["user_id"], :name => "index_wikis_on_user_id"
 
 end

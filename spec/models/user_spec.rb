@@ -26,7 +26,11 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = User.new(username: "Jared Rader", email: "raderj89@gmail.com", password: "helloworld", password_confirmation: "helloworld") }
+  before do
+    @user = User.new(username: "Example_User", email: "user@example.com", 
+                     password: "foobarz8", password_confirmation: "foobarz8")
+    @user.confirm!
+  end
 
   subject { @user }
 
@@ -36,6 +40,23 @@ describe User do
   it { should be_valid }
 
   it { should respond_to(:wikis) }
+
+  describe "wiki associations" do
+
+    before { @user.save }
+    
+    let!(:older_wiki) do
+      FactoryGirl.create(:wiki, user: @user, created_at: 1.day.ago)
+    end
+
+    let!(:newer_wiki) do
+      FactoryGirl.create(:wiki, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right wikis in the right order" do
+      @user.wikis.should == [newer_wiki, older_wiki]
+    end
+  end
 
   # describe "when name is not present" do
   #   before { @user.username = " " }

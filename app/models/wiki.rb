@@ -17,4 +17,8 @@ class Wiki < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
+  validates :title, presence: true, length: { maximum: 220 }
+  validates :body, presence: true, length: { minimum: 20 }
+
+  default_scope order: 'wikis.created_at DESC'
 end
