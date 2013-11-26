@@ -7,6 +7,8 @@ gem 'better_errors'
 gem 'devise'
 gem 'figaro'
 gem 'will_paginate'
+gem 'redcarpet'
+gem 'markdown_preview'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
