@@ -9,7 +9,7 @@ class WikisController < ApplicationController
     @wiki = current_user.wikis.build(params[:wiki])
     if @wiki.save
       flash[:success] = "Wiki created!"
-      redirect to @wiki
+      redirect_to @wiki
     else
       render :new
     end
