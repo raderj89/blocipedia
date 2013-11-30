@@ -14,6 +14,8 @@ Blocipedia::Application.routes.draw do
   resources :users, only: [:show, :index]
   resources :wikis
 
+  resources :wiki_collaborations
+
   root to: 'pages#home'
 
   match "about" => 'pages#about'

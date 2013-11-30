@@ -22,6 +22,8 @@ describe "Wiki pages" do
     # If I enter a wiki with bad information (too short)
     # It should not create a wiki
 
+    it { should have_selector('h1', text: 'Add Collaborators') }
+
     describe "with invalid information" do
       it "should not create a wiki" do
         expect { click_button 'Publish' }.not_to change(Wiki, :count)

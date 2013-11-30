@@ -17,12 +17,29 @@ describe Wiki do
   let(:user) { FactoryGirl.create(:user) }
   # before { @wiki = user.wikis.build(title: "Foobar", body: "Foobar nova scotia" * 10 ) }
 
-  # subject { @wiki }
+  subject { @wiki }
 
   # it { should respond_to(:title) }
   # it { should respond_to(:body) }
   # it { should respond_to(:user_id) }
   # its(:user) { should == user }
+
+  # it { should respond_to(:collaborators) }
+
+  it "should have a collaborators attribute" do
+    w = user.wikis.build(title: "Foobar" * 50, body: "Foobar nova scotia" * 10, collaborators: [])
+    expect(w).to be_valid
+  end
+
+  it "isn't required to have collaborators" do
+    w = user.wikis.build(title: "Foobar" * 50, body: "Foobar nova scotia" * 10, collaborators: [])
+    expect(w).to be_valid
+  end
+
+  it "is valid with multiple collaborators" do
+    w = user.wikis.build(title: "Foobar" * 50, body: "Foobar nova scotia" * 10, collaborators: [1, 2])
+    expect(w).to be_valid
+  end
 
   it "is valid with title, body and a user_id associated with user creating it" do
     w = user.wikis.build(title: "Foobar", body: "Foobar nova scotia" * 10)

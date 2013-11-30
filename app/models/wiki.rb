@@ -15,6 +15,8 @@ class Wiki < ActiveRecord::Base
   attr_accessible :body, :public, :title
 
   belongs_to :user
+  has_many :wiki_collaborations
+  has_many :users, through: :wiki_collaborations
 
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 220 }

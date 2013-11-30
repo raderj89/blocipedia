@@ -1,0 +1,11 @@
+<%#= form_for @wiki_collaboration do |f| %>
+  <ul>
+  <% @users.each do |user| %>
+    <li><%= check_box_tag "user_ids[]", user.id %>
+    <%= user.username %>
+  </li>
+  <% end %>
+
+  <%#= f.submit 'Add Collaborators' %>
+
+<%# end %>
