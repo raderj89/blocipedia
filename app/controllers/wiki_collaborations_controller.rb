@@ -32,7 +32,8 @@ before_filter :authenticate_user!, only: [:create]
   private
 
   def setup
-    @wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.find(params[:wiki_id]) # Should this be
+                                        # @wiki = current_user.wikis.find(params[:wiki_id]) ?
     @wiki_collaborations = @wiki.wiki_collaborations
     @wiki_users = @wiki.users
     @collaborator_ids = []
