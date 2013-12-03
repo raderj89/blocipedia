@@ -2,7 +2,6 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
 
   def new
-    @users = User.all
     @wiki = current_user.wikis.new
   end
 
@@ -17,6 +16,9 @@ class WikisController < ApplicationController
   end
 
   def show
+    @users = User.all # Why do I have to list all users here
+                      # and am unable to do so in 
+                      # wiki_collaborations controller?
     @wiki = Wiki.find(params[:id])
   end
 

@@ -1,0 +1,26 @@
+<!-- how can this be cleaned up? -->
+<div class="row">
+  <div class="col-sm-6">
+    <%= form_for wiki, url: wiki_collaborations_path, method: :post do %>
+    <%= hidden_field_tag :wiki_id, wiki.id %>
+  <% @users.each do |user| %>
+    <% next if current_user == user %>
+    <div class="checkbox">
+    <%= check_box_tag "user_ids[]", user.id, wiki.users.include?(user) %>
+    <%= user.username %>
+    <% if wiki.users.include?(user) %>
+      <% wiki.wiki_collaborations.each do |wiki_collaboration| %>
+        <% if user.wiki_collaborations.include?(wiki_collaboration) %>
+          <%= link_to "| Remove", wiki_collaboration, method: :delete %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <%= submit_tag 'Add Collaborators', class: 'btn btn-primary' %>
+
+  </div>
+
+<% end %>
+</div>

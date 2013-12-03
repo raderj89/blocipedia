@@ -2,3 +2,13 @@
 <h4>Published by <%= @wiki.user.username %></h4>
 <br>
 <%= @wiki.body %>
+
+<hr>
+
+<% if user_signed_in? %>
+
+<h1>Add Collaborators</h1>
+
+<%= render template: 'wiki_collaborations/add_or_remove', locals: { wiki: @wiki } %>
+
+<% end %>
