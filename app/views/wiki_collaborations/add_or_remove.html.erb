@@ -8,13 +8,13 @@
     <div class="checkbox">
     <%= check_box_tag "user_ids[]", user.id, wiki.users.include?(user) %>
     <%= user.username %>
-    <% if wiki.users.include?(user) %>
+    
       <% wiki.wiki_collaborations.each do |wiki_collaboration| %>
         <% if user.wiki_collaborations.include?(wiki_collaboration) %>
           <%= link_to "| Remove", wiki_collaboration, method: :delete %>
         <% end %>
       <% end %>
-    <% end %>
+    
   </div>
   <% end %>
 
