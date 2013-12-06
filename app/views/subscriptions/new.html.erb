@@ -1,0 +1,39 @@
+<h1>Select a plan</h1>
+
+<div class="row">
+  <%= form_for @subscription, url: user_subscriptions_path, method: :post, html: { class: 'form-horizontal' } do %>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <%= label_tag "Free" %>
+      <%= radio_button_tag :plan_id, @free_plan.id, false %>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <%= hidden_field_tag :stripe_card_token %>
+    <div class="form-group">
+      <%= label_tag "Premium" %>
+      <%= radio_button_tag :plan_id, @premium_plan.id, false %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_number, "Credit Card Number" %>
+      <%= text_field_tag :card_number, nil, name: nil %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+      <%= text_field_tag :card_code, nil, name: nil %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_month, "Card Expiration" %>
+      <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+    </div>
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+    <div class="row">
+    <%= submit_tag 'Choose Plan' %>
+    </div>
+  </div>
+</div>
+  <% end %>

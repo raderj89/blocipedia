@@ -3,6 +3,7 @@ class WikisController < ApplicationController
 
   def new
     @wiki = current_user.wikis.new
+    authorize! :new, @wiki, message: "You need to be a premium user to create wikis."
   end
 
   def create
@@ -20,6 +21,7 @@ class WikisController < ApplicationController
                       # and am unable to do so in 
                       # wiki_collaborations controller?
     @wiki = Wiki.find(params[:id])
+    authorize! :read, @wiki, message: "You need to be signed up to view wikis."
   end
 
   def update

@@ -1,17 +1,15 @@
 Blocipedia::Application.routes.draw do
-  get "wikis/create"
 
-  get "wikis/show"
+  get "subscriptions/new"
 
-  get "wikis/update"
+  get "subscriptions/create"
 
-  get "wikis/edit"
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  get "wikis/destroy"
+  resources :users, only: [:index, :show] do
+    resources :subscriptions
+  end
 
-  devise_for :users
-
-  resources :users, only: [:show, :index]
   resources :wikis
 
   resources :wiki_collaborations
