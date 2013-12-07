@@ -2,8 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-  subscription.setupForm()
+  $('#plan_id_2').change ->
+    if $(this).is(':checked')
+      Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+      subscription.setupForm()
+    else
+      true
 
 subscription =
   setupForm: ->
@@ -23,7 +27,7 @@ subscription =
 
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#stripe_card_token').val(response.id)
+      $('#subscription_stripe_card_token').val(response.id)
       $('#new_subscription')[0].submit()
     else
       $('#stripe_error').text(response.error.message)

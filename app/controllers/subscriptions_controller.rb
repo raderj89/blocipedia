@@ -19,6 +19,8 @@ def new
       end
     else
       @subscription = current_user.create_subscription(plan_id: @plan_id)
+      flash[:success] = "You're signed up with the #{@subscription.plan.name} plan!"
+      redirect_to root_path
     end
   end
 
