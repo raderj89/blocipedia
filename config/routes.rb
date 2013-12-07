@@ -6,9 +6,7 @@ Blocipedia::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :users, only: [:index, :show] do
-    resources :subscriptions
-  end
+  resources :users, only: [:index, :show]
 
   resources :wikis
 
