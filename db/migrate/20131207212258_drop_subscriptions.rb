@@ -1,5 +1,9 @@
-class CreateSubscriptions < ActiveRecord::Migration
-  def change
+class DropSubscriptions < ActiveRecord::Migration
+  def up
+    drop_table :subscriptions
+  end
+
+  def down
     create_table :subscriptions do |t|
       t.references :plan
       t.references :user
