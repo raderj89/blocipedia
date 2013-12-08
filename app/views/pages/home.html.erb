@@ -1,11 +1,23 @@
 <div class="jumbotron center">
-    <h1 class="center-header">Blocipedia</h1>
-    <h2 class="center-header">Social, Markdown Wikis</h2>
-
-    <div class="row">
-      <div class="col-sm-4 col-sm-offset-2">
-        <p>Create Free Wikis</p>
-        <%= link_to "Free", '#', class: 'btn btn-lg btn-default' %>
-      </div>
+  <h1 class="center-header">Blocipedia</h1>
+  <h2 class="center-header">Social, Markdown Wikis</h2>
+  <br>
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>Free Account</h3>
+      <ul>
+        <li>Create unlimited public wikis</li>
+        <li>Collaborate with unlimited users</li>
+      </ul>
+      <%= link_to "Sign up now!", new_user_registration_path(plan: @free_plan.id), class: 'btn btn-default btn-lg btn-block' %>
     </div>
+    <div class="col-sm-5 col-sm-offset-2">
+      <h3>Premium Account</h3>
+      <ul>
+        <li>All the benefits of basic</li>
+        <li>Unlimited private wikis</li>
+      </ul>
+      <%= link_to "Sign up now!", new_user_registration_path(plan: @premium_plan.id), class: 'btn btn-success btn-lg btn-block' %>
+    </div>
+  </div>
 </div>

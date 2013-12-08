@@ -3,5 +3,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
-  end  
+  end 
+
+  # def after_sign_up_path_for(resource)
+  #   users_path
+  # end
 end

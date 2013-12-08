@@ -26,16 +26,33 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :confirmable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
+         :recoverable, :rememberable, :trackable, :validatable #:confirmable,
+  
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :subscription,
-  :customer_id
-  # attr_accessible :title, :body
+  :stripe_customer_token, :plan_id, :stripe_card_token
+  
   has_many :wikis
   has_many :wiki_collaborations
   has_many :shared_wikis, through: :wiki_collaborations, source: :wiki
-  has_one :subscription
+  
+  belongs_to :plan
+
+  validates_presence_of :plan_id
+
+  attr_accessor :stripe_card_token
+  
+  def save_with_payment
+    if valid?
+      customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
+      self.stripe_customer_token = customer.id
+      save!
+    end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
+  end
+
   # validates :username, presence: true, length: { maximum: 50 }
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }

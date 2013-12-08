@@ -1,11 +1,12 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    user = User.create!(username: "Example_User",
+    user = User.create!(username: "Jared Rader",
                  email: "example@blocipedia.com",
                  password: "helloworld",
-                 password_confirmation: "helloworld")
-    user.skip_confirmation!
+                 password_confirmation: "helloworld",
+                 plan_id: 1)
+    #user.skip_confirmation!
     user.save
     10.times do |n|
       name = Faker::Name.name
@@ -14,8 +15,9 @@ namespace :db do
       u = User.create!(username: name,
                    email: email,
                    password: password,
-                   password_confirmation: password)
-      u.skip_confirmation!
+                   password_confirmation: password,
+                   plan_id: 1)
+      #u.skip_confirmation!
       u.save
     end
 
