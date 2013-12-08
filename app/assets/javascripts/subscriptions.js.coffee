@@ -2,13 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('#plan_id_2').change ->
-    if $(this).is(':checked')
-      Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-      subscription.setupForm()
-    else
-      true
+  $('#premium-form').off().hide() unless plan2
 
+  plan2 =
+    $('#plan_id_2').change ->
+      if $(this).is(':checked')
+        $('#premium-form').show()
+      else if $(this).is(':not(:checked)')
+        $('premium-form').hide()
+      
 subscription =
   setupForm: ->
     $('#new_subscription').submit ->
@@ -32,3 +34,4 @@ subscription =
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').prop('disabled', false)
+
