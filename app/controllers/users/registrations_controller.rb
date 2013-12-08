@@ -12,6 +12,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.save
       end
     end
-    binding.pry
   end
 end

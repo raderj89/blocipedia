@@ -13,3 +13,5 @@ development:
 production:
   SENDGRID_USERNAME: 'app19630349@heroku.com'
   SENDGRID_PASSWORD: 'pbuiirig'
+  STRIPE_API_KEY: 'sk_test_4TMTbBoxjjkSAIgCaVLQqdDL'
+  STRIPE_PUBLIC_KEY: 'pk_test_9ZFcJunFaJpY7C6FXkw9iZAT'
