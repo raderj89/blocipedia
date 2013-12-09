@@ -7,14 +7,11 @@ gem 'better_errors'
 gem 'devise'
 gem 'figaro'
 gem 'will_paginate'
-<<<<<<< HEAD
 gem 'cancan'
 gem 'stripe'
 gem 'friendly_id'
-=======
 gem 'redcarpet'
 gem 'markdown_preview'
->>>>>>> markdown-live
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

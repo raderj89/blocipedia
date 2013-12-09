@@ -151,12 +151,9 @@ GEM
     rdiscount (2.1.7)
     rdoc (3.12.2)
       json (~> 1.4)
-<<<<<<< HEAD
     rest-client (1.6.7)
       mime-types (>= 1.16)
-=======
     redcarpet (3.0.0)
->>>>>>> markdown-live
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)

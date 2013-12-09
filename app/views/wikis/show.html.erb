@@ -1,8 +1,7 @@
 <h1><%= @wiki.title %></h1>
 <h4>Published by <%= @wiki.user.username %></h4>
 <br>
-<<<<<<< HEAD
-<%= @wiki.body %>
+<%= markdown @wiki.body %>
 
 <hr>
 
@@ -13,6 +12,3 @@
 <%= render template: 'wiki_collaborations/add_or_remove', locals: { wiki: @wiki } %>
 
 <% end %>
-=======
-<%= markdown @wiki.body %>
->>>>>>> markdown-live
