@@ -1,6 +1,8 @@
 class WikisController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
 
+  uses_markdown_preview
+
   def new
     @wiki = current_user.wikis.new
     authorize! :new, @wiki, message: "You need to be a premium user to create wikis."
@@ -9,7 +11,7 @@ class WikisController < ApplicationController
   def create
     @wiki = current_user.wikis.build(params[:wiki])
     if @wiki.save
-      flash[:success] = "Wiki created!"
+      flash[:notice] = "Wiki created!"
       redirect_to @wiki
     else
       render :new
