@@ -12,6 +12,7 @@ class Ability
 
     if user.plan.name == "Premium"
       can :manage, Wiki, :user_id => user.id 
+      can :read, Wiki
     end
   end
 end

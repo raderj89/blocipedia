@@ -12,6 +12,9 @@
 #
 
 class Wiki < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   attr_accessible :body, :public, :title
 
   belongs_to :user
