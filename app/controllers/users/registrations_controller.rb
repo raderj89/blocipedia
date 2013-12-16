@@ -11,7 +11,6 @@ before_filter :setup, only: [:edit]
         flash[:error] = "Unable to update plan."
         render :edit
       end
-    binding.pry
   end
 
   private
@@ -25,7 +24,6 @@ before_filter :setup, only: [:edit]
       else
         resource.save
       end
-      binding.pry
     end
   end
 
