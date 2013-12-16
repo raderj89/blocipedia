@@ -1,6 +1,10 @@
 Blocipedia::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
+  
+  devise_scope :user do
+    put 'users/update_plan', :to => 'users/registrations#update_plan'
+  end
 
   resources :users, only: [:index, :show]
 
@@ -11,6 +15,5 @@ Blocipedia::Application.routes.draw do
   root to: 'pages#home'
 
   match "about" => 'pages#about'
-
 
 end
