@@ -26,4 +26,16 @@ class Wiki < ActiveRecord::Base
   validates :body, presence: true, length: { minimum: 20 }
 
   default_scope order: 'wikis.created_at DESC'
+
+  # From Railscasts #343 http://railscasts.com/episodes/343-full-text-search-in-postgresql
+  def self.text_search(query)
+    if query.present?
+      # ilike makes search case insensitive
+      # @@ full text search in Postgres
+      #where("title @@ :q or body @@ :q", q: query)
+      search(query)
+    else
+      scoped
+    end
+  end
 end

@@ -3,9 +3,18 @@
   <div class="form-group">
     <%= f.text_field :title, placeholder: "Wiki title", class: 'form-control'  %>
   </div>
+
+  <% if can? :privatize, @wiki %>
+    <div class="form-group">
+      <%= f.label :public, class: 'checkbox pull-right' do %>
+        <%= f.check_box :public %> Public Wiki
+      <% end %>
+    </div>
+  <% end %>
   
   <div class="form-group">
     <%= f.text_area :body, placeholder: "Wiki goes here", class: 'form-control markdown_preview' %>
   </div>
+
   <%= f.submit 'Publish', class: "btn btn-lg btn-primary" %>
 <% end %>

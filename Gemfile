@@ -13,6 +13,7 @@ gem 'friendly_id'
 gem 'redcarpet'
 gem 'markdown_preview'
 gem 'rdiscount', '1.6.8'
+gem 'texticle', '~> 2.0', require: 'texticle/rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

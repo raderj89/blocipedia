@@ -5,15 +5,15 @@ class Ability
     user ||= User.new
 
     if user.plan.name == "Free"
-      # I don't have the private attribute on wikis yet, so I'm restricting ability to create wikis
-      # can :manage, Wiki, :user_id => user.id
-      can :read, Wiki
+      can :create, Wiki, :user_id => user.id
+      can :edit, user.shared_wikis
     end
 
     if user.plan.name == "Premium"
       can :manage, Wiki, :user_id => user.id 
       can :edit, user.shared_wikis
-      can :read, Wiki
+      can :privatize, Wiki, :user_id => user.id
     end
+    # can :read, Wiki, public: true
   end
 end

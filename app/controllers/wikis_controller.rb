@@ -1,11 +1,15 @@
 class WikisController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   uses_markdown_preview
 
+  def index
+    @wikis = Wiki.text_search(params[:query])
+  end
+
   def new
     @wiki = current_user.wikis.new
-    authorize! :new, @wiki, message: "You need to be a premium user to create wikis."
+    authorize! :new, @wiki, message: "You need to be signed up to create wikis."
   end
 
   def create
@@ -26,7 +30,7 @@ class WikisController < ApplicationController
     if request.path != wiki_path(@wiki)
       redirect_to @wiki, status: :moved_permanently
     end
-    authorize! :read, @wiki, message: "You need to be signed up to view wikis."
+    # authorize! :read, @wiki, message: "You need to be signed up to view wikis."
   end
 
   def edit

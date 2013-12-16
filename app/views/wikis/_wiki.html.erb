@@ -1,10 +1,12 @@
 <li>
   <h3><%= link_to wiki.title, wiki %></h3>
+  <em><p><%= wiki.user.username %></p></em>
   <div class="wiki-body">
-    <%= wiki.body %>
+    <%= markdown truncate wiki.body, length: 500, separator: ' ' %>
     <br>
     <span class="timestamp">
       Posted <%= time_ago_in_words(wiki.created_at) %> ago.
     </span>
   </div>
 </li>
+<hr>

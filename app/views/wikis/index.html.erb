@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Wikis</h1>
+    <ul>
+    <% @wikis.each do |wiki| %>
+      <!-- skip wiki if private unless that wiki's user is the
+      current user -->
+      <% next if wiki.public == false unless wiki.user == current_user %>
+        <li><%= link_to wiki.title, wiki_path(wiki) %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>

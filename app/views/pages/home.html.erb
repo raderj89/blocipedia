@@ -1,3 +1,15 @@
+<% if user_signed_in? %>
+  <div class="page-header">
+    <h1>Blocipedia</h1>
+  </div>
+
+  <ul>
+    <%= render @wikis %>
+    <%= will_paginate @wikis %>
+  </ul>
+
+<% else %>
+
 <div class="jumbotron center">
   <h1 class="center-header">Blocipedia</h1>
   <h2 class="center-header">Social, Markdown Wikis</h2>
@@ -20,4 +32,5 @@
       <%= link_to "Sign up now!", new_user_registration_path(plan: @premium_plan.id), class: 'btn btn-success btn-lg btn-block' %>
     </div>
   </div>
+  <% end %>
 </div>

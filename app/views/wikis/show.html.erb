@@ -1,14 +1,23 @@
-<h1><%= @wiki.title %></h1>
-<h4>Published by <%= @wiki.user.username %></h4>
-<br>
-<%= markdown @wiki.body %>
-
-<hr>
-
 <% if user_signed_in? && @wiki.user == current_user %>
-
-<h1>Add Collaborators</h1>
-
-<%= render template: 'wiki_collaborations/add_or_remove', locals: { wiki: @wiki } %>
-
+<div class="col-sm-7">
+  <div class="page-header">
+    <h1><%= @wiki.title %></h1>
+    <h4 style="display:inline; vertical-align:middle;"><%= @wiki.user.username %></h4>
+    <%= link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-sm btn-default' %>
+      <%= link_to 'Delete', wiki_path(@wiki), method: :delete, class: 'btn btn-sm btn-danger' %>
+  </div>
+  <%= markdown @wiki.body %>
+</div>
+<div class="col-sm-5">
+  <h3>Add Collaborators</h3>
+    <%= render template: 'wiki_collaborations/add_or_remove', locals: { wiki: @wiki } %>
+</div>
+<% else %>
+<div class="col-sm-12">
+  <div class="page-header">
+    <h1><%= @wiki.title %></h1>
+    <h4><%= @wiki.user.username %></h4>
+  </div>
+  <%= markdown @wiki.body %>
+</div>
 <% end %>
