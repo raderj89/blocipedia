@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end 
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   # def after_sign_up_path_for(resource)
   #   users_path
   # end

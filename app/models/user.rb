@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :subscription,
   :stripe_customer_token, :plan_id, :stripe_card_token
   
-  has_many :wikis
+  has_many :wikis, dependent: :destroy
   has_many :wiki_collaborations
   has_many :shared_wikis, through: :wiki_collaborations, source: :wiki
   
@@ -53,15 +53,12 @@ class User < ActiveRecord::Base
     false
   end
 
-  def update_user_plan
-    if valid?
-      customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
-      self.stripe_customer_token = customer.id
-      save!
-    end
+  def cancel_user_plan(customer_id)
+    customer = Stripe::Customer.retrieve("#{customer_id}")
+    customer.cancel_subscription
   rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error while creating customer: #{e.message}"
-    errors.add :base, "There was a problem with your credit card."
+    logger.error "Stripe error while deleting customer: #{e.message}"
+    errors.add :base, "No active subscriptions for user."
     false
   end
   # validates :username, presence: true, length: { maximum: 50 }
