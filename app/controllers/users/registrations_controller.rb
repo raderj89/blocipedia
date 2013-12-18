@@ -1,5 +1,12 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :setup, only: [:edit]
+
+  def new
+    unless (params[:plan] == '1' || params[:plan] == '2')
+      flash[:notice] = "Please select a plan to sign up."
+      redirect_to root_url
+    end
+  end
   
   def update_plan
     @user = current_user
