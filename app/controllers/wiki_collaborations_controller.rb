@@ -3,6 +3,8 @@ before_filter :setup, only: [:create]  # Best way to accomplish this?
 before_filter :authenticate_user!, only: [:create]
 
   def add_or_remove
+    #no empty methods
+    render
   end
 
   ## TODO: If wiki already has some collaborations and no new values are selected, do not attempt
@@ -32,7 +34,7 @@ before_filter :authenticate_user!, only: [:create]
   private
 
   def setup
-    @wiki = Wiki.find(params[:wiki_id]) # Should this be
+    @wiki = current_user.wikis.find(params[:wiki_id]) # Should this be
                                         # @wiki = current_user.wikis.find(params[:wiki_id]) ?
     @wiki_collaborations = @wiki.wiki_collaborations
     @wiki_users = @wiki.users

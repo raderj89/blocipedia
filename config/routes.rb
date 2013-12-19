@@ -16,12 +16,13 @@ Blocipedia::Application.routes.draw do
 
   resources :wiki_collaborations
 
-  root to: 'pages#home'
-
+  #deprecated
   match "about" => 'pages#about'
 
   match '404', to: redirect('/')
 
   get '/:id', to: 'users#show', as: 'user', constraints: { id: /[\w+\.]+/ }
 
+  # root should always be last
+  root to: 'pages#home'
 end
